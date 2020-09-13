@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Matching only shirts/ directory
+RewriteRule ^shirts/$ shirts/shirts.php
+
+
