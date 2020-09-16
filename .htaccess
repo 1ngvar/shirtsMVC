@@ -3,4 +3,42 @@ RewriteEngine On
 # Matching only shirts/ directory
 RewriteRule ^shirts/$ shirts/shirts.php
 
+# Rewriting id?=102 patterns to shirts/102
+RewriteRule ^shirts/([0-9]+)/$ shirts/shirt.php?id=$1
+# + matches 1 or more characters
+# This rule means "If someone makes a requets for a page like this – show them shirts/shirt.php file, passing a GET variable with a pattern [0-9]+"
+
+# Redirecting from old pages with ".php" endings to the new ones
+RewriteRule ^receipt.php$ shirts4mike/receipt/ [R=301]
+# First part is a matched pattern, the second one – where to redirect to
+# Without an [R] flag users will see the old receipt.php address in a web browser
+RewriteRule ^contact.php$ shirts4mike/contact [R=301]
+RewriteRule ^shirts.php$ shirts4mike/shirts [R=301]
+
+# Adding a trailing slash
+RewriteRule ^(shirts/[0-9]+)$ /&1/ [R=301]
+
+# Checking for a GET variable named "id"
+# If the Query string has an "id=" and a number – then we check if the web address is "shirt.php"
+# If it is – then we want to rewrite the URL to /shirts/#/ and make a [R=301] redirect
+# To get a shirt's number from a Query string, we surround it with () and refer to it as %1 in RewriteRule (not a $1, since it is a RewriteCond)
+RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
+RewriteRule ^shirt.php$ shirts4mike/shirts/%1/? [R=301]
+# By default, Apache will add the Query string to the end of the new web address as well.
+# We can fix that by putting ? in the end of a RewriteRule.
+# This tells Apache that the Query string should have nothing in it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
