@@ -50,28 +50,18 @@ function get_products_search($s) {
 }
 
 function get_products_subset( $start, $end ) {
-	global $all, $total_products, $current_page, $products_per_page, $total_pages;
-
+	global $all;
 	$subset = [];
 
 	$i = 0;
 	foreach ($all as $product) {
 		if ( ($i >= $start) && ($i <= $end) ) {
+//			echo "i is $i, product is " . $product['name'] . "<br>";
 			$subset[] = $product;
-			echo "i is $i, product is " . $product['name'] . "<br>";
 		}
 		$i++;
 	}
-
-//	echo "New subset: " . print_r( $subset );
-//	foreach ($all as $product) echo "Product sku is $product[sku] <br> ";
-
-	echo "Total products are $total_products <br>";
-	echo "Current page is $current_page <br>";
-	echo "Products per page are $products_per_page <br>";
-	echo "Total pages are $total_pages <br>";
-	echo "Start at $start <br>";
-	echo "End at $end <br>";
+	return $subset;
 }
 
 

@@ -29,8 +29,7 @@ if ($total_products - $start >= 7) {
 } else {
 	$end = ($start - 1) + ( $total_products - $start );
 }
-$products = get_products_all($start, $end);
-
+$products = get_products_subset($start, $end);
 /*
  	End Getting products for current page
 */
