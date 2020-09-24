@@ -37,6 +37,11 @@ function get_products_recent() {
     return $recent;
 }
 
+/**
+ * @Loops through all products, looking for matching names
+ *
+ * @return array
+ */
 function get_products_search($s) {
     $results = array();
     $all = get_products_all();
@@ -56,7 +61,6 @@ function get_products_subset( $start, $end ) {
 	$i = 0;
 	foreach ($all as $product) {
 		if ( ($i >= $start) && ($i <= $end) ) {
-//			echo "i is $i, product is " . $product['name'] . "<br>";
 			$subset[] = $product;
 		}
 		$i++;
